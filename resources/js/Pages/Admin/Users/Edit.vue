@@ -1,5 +1,5 @@
 <template>
-    <AdminLayout title="Update users">
+    <AdminLayout title="Update user">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Update User
@@ -8,16 +8,12 @@
 
         <div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <section class="container mx-auto p-6 font-mono">
+                <section class="container mx-auto p-6">
                     <div
                         class="w-full mb-8 overflow-hidden rounded-lg shadow-lg"
                     >
                         <div class="w-full shadow p-5 bg-white">
-                            <form
-                                @submit.prevent="
-                                    form.put(route('admin.users.update', form.id))
-                                "
-                            >
+                            <form @submit.prevent="updateUser">
                                 <div class="m-4">
                                     <label
                                         for="name"
@@ -79,27 +75,23 @@
     </AdminLayout>
 </template>
 
-<script>
+<script setup>
 import AdminLayout from "@/Layouts/AdminLayout.vue";
-import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
+import { Link, useForm } from "@inertiajs/inertia-vue3";
+import { defineProps } from "vue";
 
-export default {
-    components: {
-        AdminLayout,
-        Head,
-        Link,
-    },
-    props: {
-        user: Object,
-        errors: Object,
-    },
-    setup(props) {
-        const form = useForm({
-            id: props.user.id,
-            name: props.user.name,
-            email: props.user.email,
-        });
-        return { form };
-    },
-};
+const props = defineProps({
+    user: Object,
+    errors: Object,
+});
+
+const form = useForm({
+    id: props.user.id,
+    name: props.user.name,
+    email: props.user.email,
+});
+
+function updateUser() {
+    form.put(route("admin.users.update", form.id));
+}
 </script>

@@ -4,11 +4,11 @@
 
         <Banner />
 
-        <div class="flex h-screen bg-gray-200 font-roboto">
+        <div class="flex h-screen bg-gray-200">
             <Sidebar />
             <div class="flex-1 flex flex-col overflow-hidden">
                 <header
-                    class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-indigo-600"
+                    class="flex justify-between items-center py-4 px-6 bg-white border-b-4 border-gray-800"
                 >
                     <div class="flex items-center">
                         <button
@@ -32,29 +32,9 @@
                         </button>
 
                         <div class="relative mx-4 lg:mx-0">
-                            <span
-                                class="absolute inset-y-0 left-0 pl-3 flex items-center"
+                            <span class="text-gray text-2xl mx-2 font-semibold uppercase"
+                                >Admin</span
                             >
-                                <svg
-                                    class="h-5 w-5 text-gray-500"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
-                            </span>
-
-                            <input
-                                class="form-input w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600"
-                                type="text"
-                                placeholder="Search"
-                            />
                         </div>
                     </div>
 
@@ -96,7 +76,7 @@
                             >
                                 <a
                                     href="#"
-                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2"
+                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-gray-600 -mx-2"
                                 >
                                     <img
                                         class="h-8 w-8 rounded-full object-cover mx-1"
@@ -109,7 +89,7 @@
                                         >
                                         replied on the
                                         <span
-                                            class="font-bold text-indigo-400"
+                                            class="font-bold text-gray-400"
                                             href="#"
                                             >Upload Image</span
                                         >
@@ -118,7 +98,7 @@
                                 </a>
                                 <a
                                     href="#"
-                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2"
+                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-gray-600 -mx-2"
                                 >
                                     <img
                                         class="h-8 w-8 rounded-full object-cover mx-1"
@@ -134,7 +114,7 @@
                                 </a>
                                 <a
                                     href="#"
-                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2"
+                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-gray-600 -mx-2"
                                 >
                                     <img
                                         class="h-8 w-8 rounded-full object-cover mx-1"
@@ -147,7 +127,7 @@
                                         >
                                         Like Your reply on
                                         <span
-                                            class="font-bold text-indigo-400"
+                                            class="font-bold text-gray-400"
                                             href="#"
                                             >Test with TDD</span
                                         >
@@ -156,7 +136,7 @@
                                 </a>
                                 <a
                                     href="#"
-                                    class="flex items-center px-4 py-3 text-gray-600 hover:text-white hover:bg-indigo-600 -mx-2"
+                                    class="flex items-center px-4 py-3 text-blue-900 hover:text-white hover:bg-gray-600 -mx-2"
                                 >
                                     <img
                                         class="h-8 w-8 rounded-full object-cover mx-1"
@@ -197,12 +177,12 @@
                             >
                                 <a
                                     href=""
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white"
                                     >Profile</a
                                 >
                                 <a
                                     href=""
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-600 hover:text-white"
                                     >Admin</a
                                 >
                             </div>
@@ -217,15 +197,32 @@
                 </header>
 
                 <!-- Page Content -->
-                <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+                <main
+                    class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200"
+                >
                     <div
                         v-if="$page.props.flash.message"
-                        class="text-green-600 mb-4"
+                        class="flex p-4 mb-4 bg-green-100 border-t-4 border-green-500 dark:bg-green-200"
                     >
-                        {{ $page.props.flash.message }}
+                        <svg
+                            class="flex-shrink-0 w-5 h-5 text-green-700"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                        <div class="ml-3 text-sm font-medium text-green-700">
+                            {{ $page.props.flash.message }}
+                        </div>
                     </div>
                     <slot />
                 </main>
+                <Footer />
             </div>
         </div>
     </div>
@@ -236,6 +233,8 @@ import { ref } from "vue";
 import { Head } from "@inertiajs/inertia-vue3";
 import Banner from "@/Components/Banner.vue";
 import Sidebar from "@/Components/Sidebar.vue";
+import Footer from "@/Components/Footer.vue";
+
 
 defineProps({
     title: String,

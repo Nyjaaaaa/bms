@@ -10,8 +10,8 @@
                 v-else
                 :href="link.url"
                 v-html="link.label"
-                class="mb-1 mr-1 px-4 py-3 text-sm leading-4 border rounded focus:text-indigo-500 focus:border-indigo-500 hover:bg-white"
-                :class="{ 'bg-indigo-200': link.active }"
+                class="mb-1 mr-1 px-4 py-3 text-sm leading-4 border rounded focus:text-gray-500 focus:border-gray-500 hover:bg-gray-200"
+                :class="{ 'bg-gray-400': link.active }"
             />
         </template>
     </div>
