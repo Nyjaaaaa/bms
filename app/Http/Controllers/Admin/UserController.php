@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
-use App\Http\Requests\UpdateUserRequest;
-use Illuminate\Http\Request as UserRequest;
+use App\Http\Requests\ValidateResidentRequest;
+use Illuminate\Support\Facades\Request as SupportRequest;
 
 class UserController extends Controller
 {
@@ -16,11 +16,12 @@ class UserController extends Controller
     {
         return Inertia::render('Admin/Users/Index', [
             'users' => User::query()
-            ->when(Request::input('search'), function($query, $search) {
+            ->when(SupportRequest::input('search'), function($query, $search) {
                 $query->where('name', 'like', "%{$search}%");
             })
-            ->paginate(10),
-            'filters' => Request::only(['search'])
+            ->paginate(10)
+            ->withQueryString(),
+            'filters' => SupportRequest::only(['search'])
         ]);
     }
 
@@ -29,7 +30,7 @@ class UserController extends Controller
         return Inertia::render('Admin/Users/Create');
     }
 
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|max:255',
@@ -58,7 +59,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(User $user, UpdateUserRequest $request)
+    public function update(User $user, ValidateResidentRequest $request)
     {
         $user->update($request->validated());
 

@@ -62,9 +62,9 @@
             </Link>
             <Link
                 class="flex items-center mt-4 py-2 px-6 text-gray-500"
-                :href="route('admin.users.index')"
+                :href="route('residents.index')"
                 :class="{
-                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Admin/Residents/Index',
+                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Residents/Index',
                 }"
             >
                 <svg
@@ -86,9 +86,9 @@
             </Link>
             <Link
                 class="flex items-center mt-4 py-2 px-6 text-gray-500"
-                :href="route('admin.users.index')"
+                :href="route('activities.index')"
                 :class="{
-                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Admin/Activities/Index',
+                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Activities/Index',
                 }"
             >
                 <svg
@@ -110,9 +110,9 @@
             </Link>
             <Link
                 class="flex items-center mt-4 py-2 px-6 text-gray-500"
-                :href="route('admin.users.index')"
+                :href="route('ordinances.index')"
                 :class="{
-                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Admin/Ordinances/Index',
+                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Ordinances/Index',
                 }"
             >
                 <svg
@@ -134,9 +134,9 @@
             </Link>
             <Link
                 class="flex items-center mt-4 py-2 px-6 text-gray-500"
-                :href="route('admin.users.index')"
+                :href="route('officials.index')"
                 :class="{
-                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Admin/Officials/Index',
+                    'bg-gray-700 bg-opacity-25 text-gray-100': $page.component === 'Officials/Index',
                 }"
             >
                 <svg

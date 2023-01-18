@@ -198,7 +198,7 @@
 
                 <!-- Page Content -->
                 <main
-                    class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200"
+                    class="flex-1 max-h-full overflow-hidden overflow-y-scroll"
                 >
                     <div
                         v-if="$page.props.flash.message"

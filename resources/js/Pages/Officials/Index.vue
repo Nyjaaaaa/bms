@@ -1,8 +1,8 @@
 <template>
-    <AdminLayout title="Manage users">
+    <AdminLayout title="Manage Barangay officials">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Manage Users
+                Manage Barangay officials
             </h2>
         </template>
 
@@ -11,7 +11,7 @@
                 <section class="container mx-auto p-6">
                     <div class="w-full flex mb-4 p-2 justify-end">
                         <Link
-                            :href="route('admin.users.create')"
+                            :href="route('officials.create')"
                             class="text-gray-900 bg-white hover:bg-gray-100 border border-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-gray-800 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 mr-2 mb-2"
                         >
                             <svg
@@ -28,7 +28,7 @@
                                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                                 />
                             </svg>
-                            <span>Add User</span>
+                            <span>Add Barangay Official</span>
                         </Link>
                     </div>
 
@@ -84,13 +84,25 @@
                                                         scope="col"
                                                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                                                     >
-                                                        Name
+                                                        Position
                                                     </th>
                                                     <th
                                                         scope="col"
                                                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
                                                     >
-                                                        Email
+                                                        First Name
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                                                    >
+                                                        Middle Name
+                                                    </th>
+                                                    <th
+                                                        scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase"
+                                                    >
+                                                        Last Name
                                                     </th>
                                                     <th
                                                         scope="col"
@@ -103,14 +115,18 @@
                                             <tbody
                                                 class="bg-white divide-y divide-gray-200"
                                             >
-                                                <tr v-for="user in users.data">
+                                                <tr
+                                                    v-for="official in officials.data"
+                                                >
                                                     <td
                                                         class="px-6 py-4 whitespace-nowrap"
                                                     >
                                                         <div
                                                             class="flex items-center"
                                                         >
-                                                            {{ user.name }}
+                                                            {{
+                                                                official.first_name
+                                                            }}
                                                         </div>
                                                     </td>
                                                     <td
@@ -119,7 +135,31 @@
                                                         <div
                                                             class="flex items-center"
                                                         >
-                                                            {{ user.email }}
+                                                            {{
+                                                                official.first_name
+                                                            }}
+                                                        </div>
+                                                    </td>
+                                                    <td
+                                                        class="px-6 py-4 whitespace-nowrap"
+                                                    >
+                                                        <div
+                                                            class="flex items-center"
+                                                        >
+                                                            {{
+                                                                official.middle_name
+                                                            }}
+                                                        </div>
+                                                    </td>
+                                                    <td
+                                                        class="px-6 py-4 whitespace-nowrap"
+                                                    >
+                                                        <div
+                                                            class="flex items-center"
+                                                        >
+                                                            {{
+                                                                official.last_name
+                                                            }}
                                                         </div>
                                                     </td>
                                                     <td
@@ -130,8 +170,8 @@
                                                                 <Link
                                                                     :href="
                                                                         route(
-                                                                            'admin.users.edit',
-                                                                            user.id
+                                                                            'officials.edit',
+                                                                            official.id
                                                                         )
                                                                     "
                                                                     class="text-gray-900 bg-white hover:bg-yellow-100 border border-yellow-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-yellow-600 dark:bg-yellow-800 dark:border-yellow-700 dark:text-white dark:hover:bg-yellow-700 mr-2 mb-2"
@@ -140,10 +180,23 @@
                                                                         >Edit</span
                                                                     >
                                                                 </Link>
+                                                                <Link
+                                                                    :href="
+                                                                        route(
+                                                                            'officials.show',
+                                                                            official.id
+                                                                        )
+                                                                    "
+                                                                    class="text-gray-900 bg-white hover:bg-green-100 border border-green-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-green-600 dark:bg-green-800 dark:border-green-700 dark:text-white dark:hover:bg-green-700 mr-2 mb-2"
+                                                                >
+                                                                    <span
+                                                                        >Details</span
+                                                                    >
+                                                                </Link>
                                                                 <button
                                                                     @click="
                                                                         destroy(
-                                                                            user.id
+                                                                            official.id
                                                                         )
                                                                     "
                                                                     type="button"
@@ -160,7 +213,9 @@
                                             </tbody>
                                         </table>
                                         <div class="m-2 p-2">
-                                            <Pagination :links="users.links" />
+                                            <Pagination
+                                                :links="officials.links"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +236,7 @@ import { ref, watch, defineProps } from "vue";
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
-    users: Object,
+    officials: Object,
     filters: Object,
 });
 
@@ -189,7 +244,7 @@ const search = ref(props.filters.search);
 
 watch(search, (value) => {
     Inertia.get(
-        "/admin/users",
+        "/officials",
         { search: value },
         {
             preserveState: true,
@@ -200,7 +255,7 @@ watch(search, (value) => {
 
 const destroy = (id) => {
     if (confirm("Are you sure?")) {
-        Inertia.delete(route("admin.users.destroy", id));
+        Inertia.delete(route("officials.destroy", id));
     }
     return { destroy };
 };

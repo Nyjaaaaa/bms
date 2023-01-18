@@ -2,6 +2,10 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\OfficialController;
+use App\Http\Controllers\ResidentController;
+use App\Http\Controllers\OrdinanceController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\IndexController;
 
@@ -33,4 +37,11 @@ Route::middleware([
 Route::middleware(['auth'])->name('admin.')->prefix('admin')->group(function(){
     Route::get('/', [IndexController::class, 'index'])->name('index');
     Route::resource('/users', UserController::class);
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::resource('/residents', ResidentController::class);
+    Route::resource('/activities', ActivityController::class);
+    Route::resource('/ordinances', OrdinanceController::class);
+    Route::resource('/officials', OfficialController::class);
 });
